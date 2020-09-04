@@ -1,0 +1,24 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+      - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+  pull_request: ~
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Install Psalm
+        run: composer require --dev vimeo/psalm:dev-master@dev --no-suggest
+
+      - name: Psalm
+        run: vendor/bin/psalm --output-format=github --shepherd
