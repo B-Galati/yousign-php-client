@@ -2,5 +2,5 @@
 
 # YouSignClient (Work in progress...)
 
-A PSR compliant Http Client for consuming YouSign API
+A PSR compliant Http Client for consuming Yousign API
 
